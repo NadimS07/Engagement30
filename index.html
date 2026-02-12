@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Hanfiya ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff4e50, #fc913a);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    color: white;
+}
+
+/* Floating Hearts */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* Card */
+.card {
+    background: rgba(0,0,0,0.45);
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    max-width: 420px;
+    animation: fadeIn 1.5s ease-in-out;
+    z-index: 10;
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.counter {
+    margin: 20px 0;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #ff4e50;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.hidden {
+    display: none;
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+footer {
+    margin-top: 25px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <!-- If using online demo music -->
+  <source src="https://www2.cs.uic.edu/~i101/SoundFiles/Canon.mp3" type="audio/mp3">
+  <!-- For personal song, replace above with:
+  <source src="love.mp3" type="audio/mp3">
+  -->
+</audio>
+
+<div class="card">
+    <h1>Hanfiya ❤️</h1>
+    <p>You said yes on 30th December 💍</p>
+
+    <div class="counter" id="counter"></div>
+
+    <button onclick="reveal()">Click If You Promise Forever</button>
+
+    <div class="hidden" id="message">
+        No matter where life takes us,<br>
+        you will always be my safest place.<br>
+        – Your future Mr. Sheikh ❤️
+    </div>
+
+    <footer>Built by Nadim Sheikh for Hanfiya 💍</footer>
+</div>
+
+<script>
+function updateCounter() {
+    const engagementDate = new Date("December 30, 2025 00:00:00");
+    const now = new Date();
+    const diff = now - engagementDate;
+
+    if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+
+        document.getElementById("counter").innerText =
+            "We've been engaged for " + days + " days and " + hours + " hours.";
+    } else {
+        document.getElementById("counter").innerText =
+            "Counting down to forever ❤️";
+    }
+}
+
+function reveal() {
+    document.getElementById("message").style.display = "block";
+    const music = document.getElementById("bgMusic");
+    music.play();
+}
+
+/* Floating hearts generator */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 400);
+updateCounter();
+setInterval(updateCounter, 1000);
+</script>
+
+</body>
+</html>
